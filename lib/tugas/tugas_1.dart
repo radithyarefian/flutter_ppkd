@@ -24,8 +24,11 @@ class Tugas1 extends StatelessWidget {
           ]
         ),
         Text("Saya Adalah Seorang App Developer", style: TextStyle(fontSize: 20),),
+        Image.asset("assets/images/ejen ali.jpg")
         ],
       ),
+
+      
       
     );
   }
