@@ -13,6 +13,7 @@ class _Tugas5State extends State<Tugas5> {
   bool text = false;
   bool logo = false;
   int _counter = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +32,7 @@ class _Tugas5State extends State<Tugas5> {
         ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Padding(
-        padding: EdgeInsets.all(15),
+        padding: EdgeInsets.all(16),
         child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
