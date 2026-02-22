@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ppkd/tugas/tugas6/halaman_utama_atk.dart';
+import 'package:flutter_ppkd/tugas/tugas6/halaman_utama_alatlistrik.dart';
 import 'package:flutter_ppkd/tugas/tugas6/halaman_utama_serbaneka.dart';
 
-class HalamanUtamaSeragam extends StatelessWidget {
-  const HalamanUtamaSeragam({super.key});
+class HalamanUtamaAtk extends StatelessWidget {
+  const HalamanUtamaAtk({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +24,19 @@ class HalamanUtamaSeragam extends StatelessWidget {
               SizedBox(height: 60),
               Row(
                 children: [
-                  SizedBox(width: 95),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Icon(
+                      Icons.arrow_back_rounded,
+                      color: Colors.black,
+                      size: 25,
+                    ),
+                  ),
+                  SizedBox(width: 94),
                   Text(
-                    "Perlengkapan Sekolah",
+                    "Alat Tulis Kantor",
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w400,
@@ -54,52 +64,22 @@ class HalamanUtamaSeragam extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 65),
-              Icon(Icons.school, size: 55),
-              SizedBox(height: 30),
+              SizedBox(height: 300),
               Text(
-                "Siap untuk Sekolah?",
+                "Ondeh Mandeh 😤",
                 style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.red,
                 ),
               ),
-              Container(
-                width: 280,
-                padding: EdgeInsets.all(5),
-                child: Center(
-                  child: Text(
-                    "Temukan pilihan yang tepat untuk tahun ajaran baru dengan koleksi lengkap seragam dan sepatu kami",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w300,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 60),
-              Container(
-                padding: EdgeInsets.all(20),
-                child: Text(
-                  "Bagian yang Kosong ini Masih Develop karena saya sudah muak 😴",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.red,
-                  ),
-                ),
-              ),
-              SizedBox(height: 100),
+              SizedBox(height: 280),
               GestureDetector(
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const HalamanUtamaAtk(),
+                      builder: (context) => const HalamanUtamaAlatlistrik(),
                     ),
                   );
                 },
@@ -115,7 +95,7 @@ class HalamanUtamaSeragam extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Langkah Berikutnya",
+                        "Lanjutkan",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,

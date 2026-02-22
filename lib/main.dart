@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ppkd/tugas/tugas6/halaman_utama_atk.dart';
 import 'package:flutter_ppkd/tugas/tugas6/halaman_utama_seragam.dart';
 import 'package:flutter_ppkd/tugas/tugas_5.dart';
 
@@ -33,8 +34,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: HalamanUtamaSeragam (),
+      home: HalamanUtamaSeragam(),
     );
   }
 }
-

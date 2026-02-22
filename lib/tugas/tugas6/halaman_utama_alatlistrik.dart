@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ppkd/tugas/tugas6/halaman_utama_atk.dart';
 import 'package:flutter_ppkd/tugas/tugas6/halaman_utama_serbaneka.dart';
 
-class HalamanUtamaSeragam extends StatelessWidget {
-  const HalamanUtamaSeragam({super.key});
+class HalamanUtamaAlatlistrik extends StatelessWidget {
+  const HalamanUtamaAlatlistrik({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +23,19 @@ class HalamanUtamaSeragam extends StatelessWidget {
               SizedBox(height: 60),
               Row(
                 children: [
-                  SizedBox(width: 95),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Icon(
+                      Icons.arrow_back_rounded,
+                      color: Colors.black,
+                      size: 25,
+                    ),
+                  ),
+                  SizedBox(width: 97),
                   Text(
-                    "Perlengkapan Sekolah",
+                    "Alat Listrik",
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w400,
@@ -34,72 +43,32 @@ class HalamanUtamaSeragam extends StatelessWidget {
                     ),
                   ),
                   Spacer(),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const HalamanUtamaSerbaneka(),
-                        ),
-                      );
-                    },
-                    child: Text(
-                      "Skip",
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w300,
-                      ),
+                  Text(
+                    "Skip",
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w300,
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 65),
-              Icon(Icons.school, size: 55),
-              SizedBox(height: 30),
+              SizedBox(height: 300),
               Text(
-                "Siap untuk Sekolah?",
+                "Paniang kapalo Ambo 😵",
                 style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
-                  color: Colors.black,
+                  fontSize: 27,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.red,
                 ),
               ),
-              Container(
-                width: 280,
-                padding: EdgeInsets.all(5),
-                child: Center(
-                  child: Text(
-                    "Temukan pilihan yang tepat untuk tahun ajaran baru dengan koleksi lengkap seragam dan sepatu kami",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w300,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 60),
-              Container(
-                padding: EdgeInsets.all(20),
-                child: Text(
-                  "Bagian yang Kosong ini Masih Develop karena saya sudah muak 😴",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.red,
-                  ),
-                ),
-              ),
-              SizedBox(height: 100),
+              SizedBox(height: 285),
               GestureDetector(
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const HalamanUtamaAtk(),
+                      builder: (context) => const HalamanUtamaSerbaneka(),
                     ),
                   );
                 },
@@ -115,7 +84,7 @@ class HalamanUtamaSeragam extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Langkah Berikutnya",
+                        "Lanjutkan Ke Aplikasi",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18,
