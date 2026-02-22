@@ -36,7 +36,7 @@ class HalamanUtamaSeragam extends StatelessWidget {
                   Spacer(),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushReplacement(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const HalamanUtamaSerbaneka(),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ppkd/tugas/tugas6/login_pelanggan.dart';
 
 class HalamanUtamaSerbaneka extends StatelessWidget {
   const HalamanUtamaSerbaneka({super.key});
@@ -21,33 +22,14 @@ class HalamanUtamaSerbaneka extends StatelessWidget {
             children: [
               SizedBox(height: 60),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: Icon(
-                      Icons.arrow_back_rounded,
-                      color: Colors.black,
-                      size: 25,
-                    ),
-                  ),
-                  SizedBox(width: 97),
                   Text(
-                    "Alat Listrik",
+                    "Serbaneka",
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w400,
                       color: Colors.black,
-                    ),
-                  ),
-                  Spacer(),
-                  Text(
-                    "Skip",
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w300,
                     ),
                   ),
                 ],
@@ -62,26 +44,38 @@ class HalamanUtamaSerbaneka extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 285),
-              Container(
-                padding: EdgeInsets.all(5),
-                width: double.infinity,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: Color(0xff32B2B2),
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Mulai",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LoginPelanggan(),
                     ),
-                  ],
+                  );
+                },
+                child: Container(
+                  padding: EdgeInsets.all(5),
+                  width: double.infinity,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: Color(0xff32B2B2),
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Lanjutkan Ke Aplikasi",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Icon(Icons.arrow_forward, color: Colors.white, size: 18),
+                    ],
+                  ),
                 ),
               ),
             ],

@@ -43,12 +43,22 @@ class HalamanUtamaAlatlistrik extends StatelessWidget {
                     ),
                   ),
                   Spacer(),
-                  Text(
-                    "Skip",
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w300,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HalamanUtamaSerbaneka(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      "Skip",
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w300,
+                      ),
                     ),
                   ),
                 ],
