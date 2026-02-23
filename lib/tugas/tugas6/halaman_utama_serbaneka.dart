@@ -46,12 +46,7 @@ class HalamanUtamaSerbaneka extends StatelessWidget {
               SizedBox(height: 330),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const LoginPelanggan(),
-                    ),
-                  );
+                  Navigator.pushNamed(context,'login pelanggan');
                 },
                 child: Container(
                   padding: EdgeInsets.all(5),
