@@ -34,7 +34,7 @@ class HalamanUtamaAtk extends StatelessWidget {
                       size: 25,
                     ),
                   ),
-                  SizedBox(width: 94),
+                  SizedBox(width: 110),
                   Text(
                     "Alat Tulis Kantor",
                     style: TextStyle(
@@ -73,7 +73,7 @@ class HalamanUtamaAtk extends StatelessWidget {
                   color: Colors.red,
                 ),
               ),
-              SizedBox(height: 280),
+              SizedBox(height: 330),
               GestureDetector(
                 onTap: () {
                   Navigator.push(

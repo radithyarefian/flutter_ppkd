@@ -33,7 +33,7 @@ class HalamanUtamaAlatlistrik extends StatelessWidget {
                       size: 25,
                     ),
                   ),
-                  SizedBox(width: 97),
+                  SizedBox(width: 125),
                   Text(
                     "Alat Listrik",
                     style: TextStyle(
@@ -72,7 +72,7 @@ class HalamanUtamaAlatlistrik extends StatelessWidget {
                   color: Colors.red,
                 ),
               ),
-              SizedBox(height: 285),
+              SizedBox(height: 330),
               GestureDetector(
                 onTap: () {
                   Navigator.push(

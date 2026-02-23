@@ -43,7 +43,7 @@ class HalamanUtamaSerbaneka extends StatelessWidget {
                   color: Colors.red,
                 ),
               ),
-              SizedBox(height: 285),
+              SizedBox(height: 330),
               GestureDetector(
                 onTap: () {
                   Navigator.pushReplacement(

@@ -24,7 +24,7 @@ class HalamanUtamaSeragam extends StatelessWidget {
               SizedBox(height: 60),
               Row(
                 children: [
-                  SizedBox(width: 95),
+                  SizedBox(width: 110),
                   Text(
                     "Perlengkapan Sekolah",
                     style: TextStyle(
@@ -93,7 +93,7 @@ class HalamanUtamaSeragam extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 100),
+              SizedBox(height: 200),
               GestureDetector(
                 onTap: () {
                   Navigator.push(

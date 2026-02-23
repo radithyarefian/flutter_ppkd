@@ -25,7 +25,7 @@ class _LoginPelangganState extends State<LoginPelanggan> {
         padding: EdgeInsetsGeometry.all(8),
         child: Column(
           children: [
-            SizedBox(height: 65),
+            SizedBox(height: 40),
             Center(
               child: SizedBox(
                 width: 80,
@@ -59,28 +59,30 @@ class _LoginPelangganState extends State<LoginPelanggan> {
               ),
             ),
             SizedBox(height: 25),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 60),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Pelanggan",
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xff289FA7),
+            Center(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 75),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Pelanggan",
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xff289FA7),
+                      ),
                     ),
-                  ),
-                  Text(
-                    "Admin",
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black.withOpacity(0.5),
+                    Text(
+                      "Admin",
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black.withOpacity(0.5),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             SizedBox(height: 25),
@@ -123,18 +125,100 @@ class _LoginPelangganState extends State<LoginPelanggan> {
                 ),
               ),
             ),
-            SizedBox(height: 30),
             Padding(
-              padding: EdgeInsets.only(left: 20),
-              child: Text(
-                "Identitas",
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.black.withOpacity(0.5),
+              padding: EdgeInsets.only(left: 30, top: 20),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Identitas",
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.black.withOpacity(0.5),
+                  ),
                 ),
               ),
             ),
-            SizedBox(height: 6),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 25),
+              child: Column(
+                children: [
+                  SizedBox(height: 8),
+                  TextField(
+                    decoration: InputDecoration(
+                      hintText: "Email atau Username",
+                      hintStyle: TextStyle(
+                        color: Colors.black.withOpacity(0.5),
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: 0.5,
+                      ),
+                      prefixIcon: Icon(
+                        Icons.email_outlined,
+                        color: Colors.black.withOpacity(0.5),
+                      ),
+                      filled: true,
+                      fillColor: Colors.white.withOpacity(0.2),
+                      contentPadding: EdgeInsets.symmetric(vertical: 13),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(15),
+                        borderSide: BorderSide (
+                          color: Colors.black,
+                          width: 1,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 20),
+            Padding(
+              padding: EdgeInsets.only(left: 30),
+              child: Align(
+                alignment: AlignmentGeometry.centerLeft,
+                child: Text(
+                  "Kata Sandi",
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.black.withOpacity(0.5),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 8),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 25),
+              child: TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  hintText: "Masukkan kata sandi",
+                  hintStyle: TextStyle(
+                    color: Colors.black.withOpacity(0.5),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: 0.5,
+                  ),
+                  prefixIcon: Icon(
+                    Icons.lock_outline,
+                    color: Colors.black.withOpacity(0.5),
+                  ),
+                  suffixIcon: Icon(
+                    Icons.visibility_outlined,
+                    color: Colors.black.withOpacity(0.5),
+                  ),
+                  filled: true,
+                  fillColor: Colors.white.withOpacity(0.2),
+                  contentPadding: EdgeInsets.symmetric(vertical: 13),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide: BorderSide (
+                          color: Colors.black,
+                          width: 1,
+                        ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
