@@ -8,6 +8,7 @@ class LoginPelanggan extends StatefulWidget {
 }
 
 class _LoginPelangganState extends State<LoginPelanggan> {
+  bool _ingatSaya = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -219,6 +220,62 @@ class _LoginPelangganState extends State<LoginPelanggan> {
                 ),
               ),
             ),
+            Container(
+              padding: EdgeInsets.only(top: 10, left: 18),
+              child: Row(
+                children: [
+                    Checkbox(
+                      value: false, 
+                      onChanged: (bool? newValue) {
+                      }
+                      ),
+                    Text(
+                      "Ingat saya",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13,
+                      ),
+                      ),
+                    SizedBox(width: 145),
+                    Text(
+                      "Lupa Sandi?",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13,
+                        color: Color(0xff289FA7)
+                      ),
+                      )
+                ],
+              ),
+            ),
+          GestureDetector(
+                onTap: () {
+                },
+                child: Container(
+                  padding: EdgeInsets.all(5),
+                  width: double.infinity,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: Color(0xff32B2B2),
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Lanjutkan Ke Aplikasi",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Icon(Icons.arrow_forward, color: Colors.white, size: 18),
+                    ],
+                  ),
+                ),
+              ),
           ],
         ),
       ),
