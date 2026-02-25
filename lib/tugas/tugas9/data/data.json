@@ -1,0 +1,31 @@
+[
+    {
+        "kategori": "Seragam & Perlengkapan Sekolah",
+        "SubKategori": "Seragam",
+        "gambar" : "https://upload.wikimedia.org/wikipedia/commons/c/c6/Seragam_Resmi_Istimewa_KARISTA.png"
+    },
+
+    {
+        "kategori": "Alat Tulis Kantor",
+        "SubKategori": "Pulpen",
+        "gambar" : "https://image.astronauts.cloud/product-images/2024/9/PulpenGelHitam3_ee31c567-2fd1-40f0-99ae-6b92e2ca7996_900x900.jpg"
+    },
+
+    {
+        "kategori": "Tas & Aksesoris Pribadi",
+        "SubKategori": "Tas Sekolah",
+        "gambar" : "https://navyclubbag.com/wp-content/uploads/2023/11/bk-7-600x600.jpg"
+    },
+
+    {
+        "kategori": "Elektronik & Aksesoris Komputer",
+        "SubKategori": "Colokan Broco",
+        "gambar" : "https://siopen.balangankab.go.id/storage/merchant/products/2025/06/10/webp/50ae6b6f180cc2e81377c867d086673b.webp"
+    },
+
+    {
+        "kategori": "Listrik & Peralatan Rumah Tangga",
+        "SubKategori": "Sapu",
+        "gambar" : "https://siopen.balangankab.go.id/storage/merchant/products/2025/05/09/webp/f5b1217a16723ca6045b19473a9f8d6a.webp"
+    }
+]
