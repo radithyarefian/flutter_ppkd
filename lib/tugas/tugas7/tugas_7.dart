@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ppkd/extension/navigator.dart';
+import 'package:flutter_ppkd/tugas/tugas11/database/preference.dart';
+import 'package:flutter_ppkd/tugas/tugas11/view/splash_screen.dart';
 import 'package:flutter_ppkd/tugas/tugas7/halaman_kategori.dart';
 import 'package:flutter_ppkd/tugas/tugas7/halaman_mode.dart';
 import 'package:flutter_ppkd/tugas/tugas7/halaman_persyaratan.dart';
@@ -84,6 +87,13 @@ class _Tugas7State extends State<Tugas7> {
                     selected: _drawerIndex == 4,
                     onTap: () => _onDrawerTapped(4),
                   ),
+                  ListTile(
+                    title: Text("Logout"),
+                    onTap: () {
+                      PreferenceHandler().deleteIsLogin();
+                      context.pushAndRemoveAll(HalamanSplashScreen());
+                    },
+                  ),
                 ],
               ),
             )
@@ -93,7 +103,6 @@ class _Tugas7State extends State<Tugas7> {
       body: _bottomIndex == 0
           ? _homePages[_drawerIndex] // HOME → FORM + DRAWER
           : const HalamanProfile(), // PROFILE → HALAMAN SENDIRI
-
       // ===== BOTTOM NAVIGATION BAR =====
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _bottomIndex,
@@ -103,14 +112,8 @@ class _Tugas7State extends State<Tugas7> {
           });
         },
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
       ),
     );
