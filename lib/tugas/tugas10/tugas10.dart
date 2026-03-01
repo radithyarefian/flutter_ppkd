@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ppkd/extension/navigator.dart';
+import 'package:flutter_ppkd/tugas/tugas10/halaman_selanjutnya.dart';
 
 class Tugas10 extends StatefulWidget {
   const Tugas10({super.key});
@@ -87,10 +88,17 @@ class _Tugas10State extends State<Tugas10> {
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Password Wajib Diisi';
-                    } else {
-                      return null;
+                      return 'Password wajib diisi';
                     }
+                    final passwordRegex = RegExp(
+                      r'^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).+$',
+                    );
+
+                    if (!passwordRegex.hasMatch(value)) {
+                      return 'Password harus mengandung huruf besar, huruf kecil, angka, dan karakter khusus';
+                    }
+
+                    return null;
                   },
                 ),
                 SizedBox(height: 25),
@@ -114,14 +122,17 @@ class _Tugas10State extends State<Tugas10> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {  
+                      if (_formKey.currentState!.validate()) {
                         print("Berhasil Tervalidasi");
+                        context.push(
+                          HalamanSelanjutnya(text: emaiController.text),
+                        );
                         if (emaiController.text != "1234@gmail.com") {
                           print("Email Salah");
                           DialogError(context);
                         }
                       } else {
-                      print("Tidak Berhasil Tervalidasi");
+                        print("Tidak Berhasil Tervalidasi");
                       }
                       print(emaiController.text);
                       print(passwordController);
@@ -139,29 +150,24 @@ class _Tugas10State extends State<Tugas10> {
 
   Future<dynamic> DialogError(BuildContext context) {
     return showDialog(
-                          context: context,
-                          builder: (_) {
-                            return AlertDialog(
-                              title: Text(
-                                "Data",
-                                style: TextStyle(fontSize: 25),
-                              ),
-                              content: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text("email yang anda masukan salah"),
-                                ],
-                              ),
-                              actions: [
-                                ElevatedButton(
-                                  onPressed: () {
-                                    context.pop();
-                                  },
-                                  child: Text("kembali"),
-                                ),
-                              ],
-                            );
-                          },
-                        );
+      context: context,
+      builder: (_) {
+        return AlertDialog(
+          title: Text("Data", style: TextStyle(fontSize: 25)),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [Text("email yang anda masukan salah")],
+          ),
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                context.pop();
+              },
+              child: Text("kembali"),
+            ),
+          ],
+        );
+      },
+    );
   }
 }
