@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ppkd/extension/navigator.dart';
 import 'package:flutter_ppkd/tugas/tugas11/database/preference.dart';
 import 'package:flutter_ppkd/tugas/tugas11/view/login_screen.dart';
-import 'package:flutter_ppkd/tugas/tugas6/login_pelanggan.dart';
-import 'package:flutter_ppkd/tugas/tugas7/tugas_7.dart';
 import 'package:flutter_ppkd/tugas/tugas9/tugas9.dart';
 
 class HalamanSplashScreen extends StatefulWidget {
@@ -12,7 +10,6 @@ class HalamanSplashScreen extends StatefulWidget {
   @override
   State<HalamanSplashScreen> createState() => _HalamanSplashScreenState();
 }
- 
 
 class _HalamanSplashScreenState extends State<HalamanSplashScreen> {
   @override
@@ -21,7 +18,7 @@ class _HalamanSplashScreenState extends State<HalamanSplashScreen> {
     autoLogin();
   }
 
-    void autoLogin() async {
+  void autoLogin() async {
     await Future.delayed(Duration(seconds: 3));
     bool? data = await PreferenceHandler.getIsLogin();
     print(data);
@@ -33,15 +30,13 @@ class _HalamanSplashScreenState extends State<HalamanSplashScreen> {
     }
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset("assets/images/logo.png")
-        ],
+        children: [Image.asset("assets/images/logo.png")],
       ),
     );
-    
   }
 }

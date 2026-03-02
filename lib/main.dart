@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ppkd/tugas/tugas11Saya/view/form.dart';
 import 'package:flutter_ppkd/tugas/tugas10/tugas10.dart';
 import 'package:flutter_ppkd/tugas/tugas11/view/splash_screen.dart';
 import 'package:flutter_ppkd/tugas/tugas6/login_pelanggan.dart';
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: Tugas10(),
+      home: HalamanForm(),
     );
   }
 }

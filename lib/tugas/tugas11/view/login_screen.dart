@@ -179,7 +179,7 @@ class _LoginScreenDay16State extends State<LoginScreenDay16> {
                     );
                     ScaffoldMessenger.of(
                       context,
-                    ).showSnackBar(SnackBar(content: Text("yoyo whatsap bro")));
+                    ).showSnackBar(SnackBar(content: Text("Akun telah didaftarkan ")));
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
