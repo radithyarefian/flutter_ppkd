@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-import 'wallpaper_detail.dart';
 import '../api/wallpaper_api.dart';
 import '../models/wallpaper_model.dart';
+import 'category_wallpaper_view.dart'; // ✅ HALAMAN BARU
 
 class WallpaperView extends StatefulWidget {
   const WallpaperView({super.key});
@@ -16,9 +16,11 @@ class _WallpaperViewState extends State<WallpaperView> {
   late Future<Walpaper> futureWallpapers;
 
   List<Datum> allWallpapers = [];
-  List<Datum> filteredWallpapers = [];
 
-  final TextEditingController searchController = TextEditingController();
+  /// CONTROLLER SLIDER
+  PageController controller = PageController(viewportFraction: 0.55);
+
+  int currentIndex = 0;
 
   @override
   void initState() {
@@ -34,23 +36,13 @@ class _WallpaperViewState extends State<WallpaperView> {
     });
   }
 
-  /// FILTER SEARCH
-  void filterSearch(String query) {
-    final results = allWallpapers.where((wallpaper) {
-      final category = wallpaper.category?.toLowerCase() ?? "";
-
-      return category.contains(query.toLowerCase());
-    }).toList();
-
-    setState(() {
-      filteredWallpapers = results;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Wallpaper API")),
+      backgroundColor: Colors.black,
+
+      /// APPBAR TANPA TEXT
+      appBar: AppBar(backgroundColor: Colors.black, elevation: 0),
 
       body: RefreshIndicator(
         onRefresh: refreshData,
@@ -66,151 +58,204 @@ class _WallpaperViewState extends State<WallpaperView> {
 
             /// Error
             if (snapshot.hasError) {
-              return Center(child: Text("Error: ${snapshot.error}"));
+              return Center(
+                child: Text(
+                  "Error: ${snapshot.error}",
+                  style: const TextStyle(color: Colors.white),
+                ),
+              );
             }
 
-            /// Ambil data
+            /// Ambil data API
             allWallpapers = snapshot.data!.data!;
 
-            /// Default tampil semua
-            if (filteredWallpapers.isEmpty && searchController.text.isEmpty) {
-              filteredWallpapers = allWallpapers;
+            /// Filter Anime & General
+            List<Datum> categoryWallpapers = allWallpapers.where((wallpaper) {
+              final category = wallpaper.category?.toLowerCase() ?? "";
+
+              return category == "anime" || category == "general";
+            }).toList();
+
+            /// Unique category
+            Map<String, Datum> uniqueCategories = {};
+
+            for (var wallpaper in categoryWallpapers) {
+              final category = wallpaper.category ?? "";
+
+              if (!uniqueCategories.containsKey(category)) {
+                uniqueCategories[category] = wallpaper;
+              }
             }
 
-            return Column(
-              children: [
-                /// SEARCH BAR
-                Padding(
-                  padding: const EdgeInsets.all(8),
+            final categoryList = uniqueCategories.values.toList();
 
-                  child: TextField(
-                    controller: searchController,
+            return Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  /// FRAME + PAGEVIEW
+                  SizedBox(
+                    height: 260,
 
-                    onChanged: filterSearch,
+                    child: Stack(
+                      alignment: Alignment.center,
 
-                    decoration: InputDecoration(
-                      hintText: "Cari kategori...",
+                      children: [
+                        /// FRAME PUTIH
+                        Container(
+                          width: 170,
+                          height: 220,
 
-                      prefixIcon: const Icon(Icons.search),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white, width: 4),
 
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                  ),
-                ),
-
-                /// GRID LIST
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-
-                    child: GridView.builder(
-                      itemCount: filteredWallpapers.length,
-
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 8,
-                            mainAxisSpacing: 8,
-                            childAspectRatio: 0.65,
+                            borderRadius: BorderRadius.circular(25),
                           ),
+                        ),
 
-                      itemBuilder: (context, index) {
-                        final wallpaper = filteredWallpapers[index];
+                        /// PAGEVIEW
+                        PageView.builder(
+                          controller: controller,
 
-                        return GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
+                          itemCount: categoryList.length,
 
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    WallpaperDetail(wallpaper: wallpaper),
-                              ),
-                            );
+                          onPageChanged: (index) {
+                            setState(() {
+                              currentIndex = index;
+                            });
                           },
 
-                          child: Card(
-                            elevation: 4,
+                          itemBuilder: (context, index) {
+                            final wallpaper = categoryList[index];
 
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
+                            return AnimatedBuilder(
+                              animation: controller,
 
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              builder: (context, child) {
+                                double value = 0;
 
-                              children: [
-                                /// IMAGE (CACHE VERSION)
-                                Expanded(
-                                  child: ClipRRect(
-                                    borderRadius: const BorderRadius.vertical(
-                                      top: Radius.circular(12),
-                                    ),
+                                if (controller.position.haveDimensions) {
+                                  value = controller.page! - index;
+                                }
 
-                                    child: CachedNetworkImage(
-                                      imageUrl: wallpaper.path ?? "",
+                                /// SCALE
+                                double scale = (1 - (value.abs() * 0.3)).clamp(
+                                  0.7,
+                                  1.0,
+                                );
 
-                                      width: double.infinity,
+                                /// CURVE
+                                double translateY = (value * value) * 120;
 
-                                      fit: BoxFit.cover,
+                                return Center(
+                                  child: Transform.translate(
+                                    offset: Offset(0, translateY),
 
-                                      /// Loading image
-                                      placeholder: (context, url) =>
-                                          const Center(
-                                            child: CircularProgressIndicator(),
+                                    child: Transform.scale(
+                                      scale: scale,
+
+                                      child: GestureDetector(
+                                        /// ✅ HANYA CARD TENGAH BISA DIKLIK
+                                        onTap: index == currentIndex
+                                            ? () {
+                                                final selectedCategory =
+                                                    wallpaper.category ?? "";
+
+                                                /// FILTER SESUAI CATEGORY
+                                                final filteredWallpapers =
+                                                    allWallpapers.where((w) {
+                                                      return w.category
+                                                              ?.toLowerCase() ==
+                                                          selectedCategory
+                                                              .toLowerCase();
+                                                    }).toList();
+
+                                                /// NAVIGATE
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        CategoryWallpaperView(
+                                                          category:
+                                                              selectedCategory,
+                                                          wallpapers:
+                                                              filteredWallpapers,
+                                                        ),
+                                                  ),
+                                                );
+                                              }
+                                            : null,
+
+                                        child: Container(
+                                          width: 160,
+                                          height: 210,
+
+                                          margin: const EdgeInsets.symmetric(
+                                            horizontal: 8,
                                           ),
 
-                                      /// Error image
-                                      errorWidget: (context, url, error) =>
-                                          const Icon(Icons.error),
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(
+                                              20,
+                                            ),
+
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                color: Colors.black26,
+                                                blurRadius: 6,
+                                              ),
+                                            ],
+                                          ),
+
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.circular(
+                                              20,
+                                            ),
+
+                                            child: CachedNetworkImage(
+                                              imageUrl: wallpaper.path ?? "",
+
+                                              fit: BoxFit.cover,
+
+                                              placeholder: (context, url) =>
+                                                  const Center(
+                                                    child:
+                                                        CircularProgressIndicator(),
+                                                  ),
+
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      const Icon(Icons.error),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                ),
-
-                                /// TEXT
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-
-                                    children: [
-                                      /// CATEGORY
-                                      Text(
-                                        wallpaper.category ?? "Unknown",
-
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-
-                                      const SizedBox(height: 4),
-
-                                      /// RESOLUTION
-                                      Text(
-                                        wallpaper.resolution ?? "-",
-
-                                        style: const TextStyle(
-                                          color: Colors.grey,
-
-                                          fontSize: 12,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
+                                );
+                              },
+                            );
+                          },
+                        ),
+                      ],
                     ),
                   ),
-                ),
-              ],
+
+                  const SizedBox(height: 20),
+
+                  /// TEXT CATEGORY
+                  if (categoryList.isNotEmpty)
+                    Text(
+                      categoryList[currentIndex].category ?? "",
+
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                ],
+              ),
             );
           },
         ),
